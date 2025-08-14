@@ -1,0 +1,29 @@
+Page 2 Summary
+==============================
+
+Page number: 2
+Image size: 1200 x 1600 pixels
+Total text regions: 24
+Lines of text: 22
+Font: medieval.otf (if available)
+Style: carolingian
+
+Text content preview:
+  1: p ̄ submovenda haereticorum suspicione paternis regulis cons...
+  2: praesenti definitione firmamus, s ̄ ae communionis efficiatu...
+  3: extraneus. Unde & Cyrum, ejusque sequaces, jam ante
+  4: p ̄ hac insania ab Ecclesiae catholicae communione
+  5: suspensos, & in sua hactenus perfidia permanentes, nisi
+
+Text regions detected:
+  1: p ̄ submovenda haereticorum suspicione paternis re...
+  2: consonantem praesenti definitione firmamus, s ̄ ae
+  3: communionis efficiatur extraneus. Unde & Cyrum,
+  4: ejusque sequaces, jam ante p ̄ hac insania ab Eccl...
+  5: catholicae communione suspensos, & in sua hactenus
+  6: perfidia permanentes, nisi sub satisfactione canon...
+  7: doctrinam apostolicam fuerint consecuti, nullatenu...
+  8: patimur eos sacrae communioni restitui: sed etiam ...
+  9: haereticos anathemati subjicimus, ut qui nostris
+  10: constitutionibus parere contempserit, ecclesiastic...
+  ... and 14 more regions

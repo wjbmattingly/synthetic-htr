@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v4#">
+  <Layout>
+    <Page ID="PAGE_0001" PHYSICAL_IMG_NR="1" HEIGHT="1600" WIDTH="1200">
+      <PrintSpace ID="PS_0001">
+        <TextBlock ID="TB_0001">
+          <TextLine ID="TL_0001">
+            <Coords POINTS="120,120 156,121 192,122 228,124 264,125 300,126 336,127 372,127 408,128 444,128 480,128 516,128 552,128 588,128 624,127 660,126 696,125 732,124 768,123 804,121 840,120 849,155 813,156 777,157 741,159 705,160 669,161 633,162 597,162 561,163 525,163 489,163 453,163 417,163 381,163 345,162 309,161 273,160 237,159 201,158 165,156 129,155"/>
+            <String CONTENT="scriptum est: Diligentibus d ̄ m omnia cooperantur in bonum . Unde ego quoque piissima" HEIGHT="35" WIDTH="730" HPOS="120" VPOS="120" ORIGINAL_CONTENT="cooperantur in bonum tanto ingredi ego quoque piissima hoc veram obedire, cum devotione gratulantis Ecclesiae,"/>
+          </TextLine>
+          <TextLine ID="TL_0002">
+            <Coords POINTS="120,161 157,162 194,163 231,165 268,166 305,167 342,168 379,168 416,169 453,169 490,169 527,169 564,169 601,169 638,168 675,167 712,166 749,165 786,164 823,162 860,161 871,196 834,197 797,198 760,200 723,201 686,202 649,203 612,203 575,204 538,204 501,204 464,204 427,204 390,204 353,203 316,202 279,201 242,200 205,199 168,197 131,196"/>
+            <String CONTENT="vestrae liberalitatis eloquia, c ̄ devotione gratulantis Ecclesiae, sicut praecepistis, divinis" HEIGHT="35" WIDTH="752" HPOS="120" VPOS="161" ORIGINAL_CONTENT="asseruit: praecepistis, divinis scripta ingredi mysteriis adhaerere, ut et majestatis obtutibus"/>
+          </TextLine>
+          <TextLine ID="TL_0003">
+            <Coords POINTS="120,202 156,203 192,204 228,206 264,207 300,208 336,209 372,210 408,210 444,210 480,210 516,210 552,210 588,210 624,209 660,208 696,207 732,206 768,204 804,203 840,202 841,237 805,238 769,239 733,241 697,242 661,243 625,244 589,245 553,245 517,245 481,245 445,245 409,245 373,245 337,244 301,243 265,242 229,241 193,239 157,238 121,237"/>
+            <String CONTENT="scripta feci mysteriis adhaerere, ut supernae majestatis obtutibus indefessis semper" HEIGHT="35" WIDTH="722" HPOS="120" VPOS="202" ORIGINAL_CONTENT="indefessis semper precibus ingerantur, promoveantur ad impetranda vobis retributionis vestrae"/>
+          </TextLine>
+          <TextLine ID="TL_0004">
+            <Coords POINTS="120,243 153,244 186,245 219,247 252,248 285,249 318,250 351,250 384,251 417,251 450,251 483,251 516,251 549,251 582,250 615,249 648,248 681,247 714,246 747,244 780,243 791,278 758,279 725,280 692,282 659,283 626,284 593,285 560,285 527,286 494,286 461,286 428,286 395,286 362,286 329,285 296,284 263,283 230,282 197,281 164,279 131,278"/>
+            <String CONTENT="precibus ingerantur, &amp; ad impetranda vobis retributionis vestrae praemia sit" HEIGHT="35" WIDTH="672" HPOS="120" VPOS="243" ORIGINAL_CONTENT="praemia sit aggregare: ovili Atque Deo domine asseruit: fili, obsequium"/>
+          </TextLine>
+          <TextLine ID="TL_0005">
+            <Coords POINTS="120,284 156,285 192,286 228,288 264,289 300,290 336,291 372,291 408,292 444,292 480,292 516,292 552,292 588,292 624,291 660,290 696,289 732,288 768,287 804,285 840,284 847,319 811,320 775,321 739,323 703,324 667,325 631,326 595,326 559,327 523,327 487,327 451,327 415,327 379,327 343,326 307,325 271,324 235,323 199,322 163,320 127,319"/>
+            <String CONTENT="commemoratio sempiterna. Atque ideo, domine clementissime fili, obsequium salutationis" HEIGHT="35" WIDTH="728" HPOS="120" VPOS="284" ORIGINAL_CONTENT="salutationis uberrimae reverenter exsolvens, specialis vos sinibus charitatis amplector,"/>
+          </TextLine>
+          <TextLine ID="TL_0006">
+            <Coords POINTS="120,325 157,326 194,327 231,329 268,330 305,331 342,332 379,332 416,333 453,333 490,333 527,333 564,333 601,333 638,332 675,331 712,330 749,329 786,328 823,326 860,325 876,361 839,362 802,363 765,365 728,366 691,367 654,368 617,368 580,369 543,369 506,369 469,369 432,369 395,369 358,368 321,367 284,366 247,365 210,364 173,362 136,361"/>
+            <String CONTENT="uberrimae reverenter exsolvens, specialis vos sinibus charitatis amplector, sperans ut de" HEIGHT="36" WIDTH="757" HPOS="120" VPOS="325" ORIGINAL_CONTENT="sperans ut de mea quod quantum sempiternum. me est, promoveantur iis"/>
+          </TextLine>
+          <TextLine ID="TL_0007">
+            <Coords POINTS="120,366 156,367 192,368 228,370 264,371 300,372 336,373 372,373 408,374 444,374 480,374 516,374 552,374 588,374 624,373 660,372 696,371 732,370 768,369 804,367 840,366 852,401 816,402 780,403 744,405 708,406 672,407 636,408 600,408 564,409 528,409 492,409 456,409 420,409 384,409 348,408 312,407 276,406 240,405 204,404 168,402 132,401"/>
+            <String CONTENT="mea devotione, quantum in me est, in iis quae p ̄ ecclesiasticae pacis unitate praecipitis," HEIGHT="35" WIDTH="733" HPOS="120" VPOS="366" ORIGINAL_CONTENT="quae pro ecclesiasticae hoc aliquo eorum hoc vobis Ita recte ingredi catholica promittatis, juxta hoc"/>
+          </TextLine>
+          <TextLine ID="TL_0008">
+            <Coords POINTS="120,407 155,408 190,409 225,411 260,412 295,413 330,414 365,414 400,415 435,415 470,415 505,415 540,415 575,415 610,414 645,413 680,412 715,411 750,410 785,408 820,407 829,443 794,444 759,445 724,447 689,448 654,449 619,450 584,450 549,451 514,451 479,451 444,451 409,451 374,451 339,450 304,449 269,448 234,447 199,446 164,444 129,443"/>
+            <String CONTENT="vos vobis potius quae sunt catholica promittatis, juxta hoc quod dicit Apostolus: Ita" HEIGHT="36" WIDTH="710" HPOS="120" VPOS="407" ORIGINAL_CONTENT="quod Deo Apostolus: Ita quod in me est, fidem nobis et vobis ."/>
+          </TextLine>
+          <TextLine ID="TL_0009">
+            <Coords POINTS="120,448 155,449 190,450 225,452 260,453 295,454 330,455 365,455 400,456 435,456 470,456 505,456 540,456 575,456 610,455 645,454 680,453 715,452 750,451 785,449 820,448 829,483 794,484 759,485 724,487 689,488 654,489 619,490 584,490 549,491 514,491 479,491 444,491 409,491 374,491 339,490 304,489 269,488 234,487 199,486 164,484 129,483"/>
+            <String CONTENT="quod in me est, promptum est &amp; vobis . Nec in aliquo eorum in quibus licite possumus" HEIGHT="35" WIDTH="710" HPOS="120" VPOS="448" ORIGINAL_CONTENT="nobis hoc aliquo eorum in quibus aggregare: Deo obedire, mansuetudinis hoc nos adhortationibus hoc equidem, quia, sicut"/>
+          </TextLine>
+          <TextLine ID="TL_0010">
+            <Coords POINTS="120,489 157,490 194,491 231,493 268,494 305,495 342,496 379,497 416,497 453,497 490,497 527,497 564,497 601,497 638,496 675,495 712,494 749,493 786,491 823,490 860,489 862,524 825,525 788,526 751,528 714,529 677,530 640,531 603,532 566,532 529,532 492,532 455,532 418,532 381,532 344,531 307,530 270,529 233,528 196,526 159,525 122,524"/>
+            <String CONTENT="obedire, mansuetudinis vestrae nos adhortationibus credatis absistere, quia, sicut gentium" HEIGHT="35" WIDTH="743" HPOS="120" VPOS="489" ORIGINAL_CONTENT="gentium Doctor asseruit: existimatis habeo crescente fide vestra, et in"/>
+          </TextLine>
+          <TextLine ID="TL_0011">
+            <Coords POINTS="120,530 156,531 192,532 228,534 264,535 300,536 336,537 372,538 408,538 444,538 480,538 516,538 552,538 588,538 624,537 660,536 696,535 732,534 768,532 804,531 839,565 803,566 767,567 731,569 695,570 659,571 623,572 587,573 551,573 515,573 479,573 443,573 407,573 371,573 335,572 299,571 263,570 227,569 191,567 155,566"/>
+            <String CONTENT="Doctor asseruit: Spem habeo crescente fide vestra, &amp; in vobis magnificari, secundum" HEIGHT="35" WIDTH="720" HPOS="120" VPOS="530" ORIGINAL_CONTENT="vobis magnificari, secundum regulam nostram ; et aggregare: hoc Deo nostro gratias"/>
+          </TextLine>
+          <TextLine ID="TL_0012">
+            <Coords POINTS="120,571 153,572 186,573 219,575 252,576 285,577 318,578 351,579 384,579 417,579 450,580 483,579 516,579 549,579 582,578 615,577 648,576 681,575 714,573 747,572 780,571 780,607 747,608 714,609 681,611 648,612 615,613 582,614 549,615 516,615 483,615 450,616 417,615 384,615 351,615 318,614 285,613 252,612 219,611 186,609 153,608 120,607"/>
+            <String CONTENT="regulam nostram ; &amp; ideo immensas d ̄ o nostro gratias exhibeo, quod p ̄ populi" HEIGHT="36" WIDTH="661" HPOS="120" VPOS="571" ORIGINAL_CONTENT="exhibeo, quod pro aggregare: multiplicatione catholici tanto ingredi ardore fervetis, ut ubicunque nobis recte ingredi regnum"/>
+          </TextLine>
+          <TextLine ID="TL_0013">
+            <Coords POINTS="120,612 159,613 198,614 237,616 276,617 315,618 354,619 393,619 432,620 471,620 510,620 549,620 588,620 627,620 666,619 705,618 744,617 783,616 822,614 861,613 900,612 904,647 865,648 826,649 787,651 748,652 709,653 670,654 631,654 592,655 553,655 514,655 475,655 436,655 397,655 358,654 319,653 280,652 241,651 202,649 163,648 124,647"/>
+            <String CONTENT="multiplicatione catholici tanto charitatis ardore fervetis, ut ubicunque vestrum propagatur" HEIGHT="35" WIDTH="785" HPOS="120" VPOS="612" ORIGINAL_CONTENT="mox incipiat proficere sempiternum. Cujus studii promoveantur vehementius insistentes, etiam"/>
+          </TextLine>
+          <TextLine ID="TL_0014">
+            <Coords POINTS="120,653 154,654 188,655 222,657 256,658 290,659 324,660 358,660 392,661 426,661 460,661 494,661 528,661 562,661 596,660 630,659 664,658 698,657 732,655 766,654 800,653 804,689 770,690 736,691 702,693 668,694 634,695 600,696 566,696 532,697 498,697 464,697 430,697 396,697 362,697 328,696 294,695 260,694 226,693 192,691 158,690 124,689"/>
+            <String CONTENT="imperium, regnum mox incipiat proficere sempiternum. Cujus studii benevolentiae" HEIGHT="36" WIDTH="685" HPOS="120" VPOS="653" ORIGINAL_CONTENT="nos in acquirendis eis, quos Arianam significatis vitare velle"/>
+          </TextLine>
+          <TextLine ID="TL_0015">
+            <Coords POINTS="120,694 158,695 196,696 234,698 272,699 310,700 348,701 386,701 424,702 462,702 500,702 538,702 576,702 614,702 652,701 690,700 728,699 766,698 804,697 842,695 880,694 890,728 852,729 814,730 776,732 738,733 700,734 662,735 624,735 586,736 548,736 510,736 472,736 434,736 396,736 358,735 320,734 282,733 244,732 206,731 168,729 130,728"/>
+            <String CONTENT="vehementius insistentes, etiam nos in acquirendis eis, quos Arianam significatis vitare velle" HEIGHT="34" WIDTH="771" HPOS="120" VPOS="694" ORIGINAL_CONTENT="perfidiam, paternae traditionis existimatis hoc posse censuram, scilicet ut et in his"/>
+          </TextLine>
+          <TextLine ID="TL_0016">
+            <Coords POINTS="120,735 157,736 194,737 231,739 268,740 305,741 342,742 379,742 416,743 453,743 490,743 527,743 564,743 601,743 638,742 675,741 712,740 749,739 786,738 823,736 860,735 873,770 836,771 799,772 762,774 725,775 688,776 651,777 614,777 577,778 540,778 503,778 466,778 429,778 392,778 355,777 318,776 281,775 244,774 207,773 170,771 133,770"/>
+            <String CONTENT="perfidiam, paternae traditionis existimatis declinare posse censuram, scilicet ut &amp; in his" HEIGHT="35" WIDTH="754" HPOS="120" VPOS="735" ORIGINAL_CONTENT="honoribus, in quibus fuerunt apud haereticos, perseverent et promoveantur aggregare: hoc Quapropter"/>
+          </TextLine>
+          <TextLine ID="TL_0017">
+            <Coords POINTS="120,776 155,777 190,778 225,779 260,781 295,782 330,783 365,783 400,784 435,784 470,784 505,784 540,784 575,784 610,783 645,782 680,781 715,780 750,779 785,778 820,776 837,811 802,812 767,813 732,814 697,816 662,817 627,818 592,818 557,819 522,819 487,819 452,819 417,819 382,819 347,818 312,817 277,816 242,815 207,814 172,813 137,811"/>
+            <String CONTENT="honoribus, in quibus fuerunt apud haereticos, perseverent &amp; promoveantur ad alios." HEIGHT="35" WIDTH="718" HPOS="120" VPOS="776" ORIGINAL_CONTENT="bonum hoc equidem, et summa laude praecipuum, aggregare: omnes ovili dominico"/>
+          </TextLine>
+          <TextLine ID="TL_0018">
+            <Coords POINTS="120,817 157,818 194,819 231,821 268,822 305,823 342,824 379,824 416,825 453,825 490,825 527,825 564,825 601,825 638,824 675,823 712,822 749,821 786,820 823,818 860,817 870,859 833,860 796,861 759,863 722,864 685,865 648,866 611,866 574,867 537,867 500,867 463,867 426,867 389,867 352,866 315,865 278,864 241,863 204,862 167,860 130,859"/>
+            <String CONTENT="Quapropter bonum hoc equidem, &amp; summa laude praecipuum, quod omnes ovili dominico p" HEIGHT="42" WIDTH="751" HPOS="120" VPOS="817" ORIGINAL_CONTENT="per veram fidem cupitis aggregare: sed non oportet nobis eos qui non recte"/>
+          </TextLine>
+          <TextLine ID="TL_0019">
+            <Coords POINTS="120,858 153,859 186,860 219,862 252,863 285,864 318,865 351,865 384,866 417,866 450,866 483,866 516,866 549,866 582,865 615,864 648,863 681,862 714,861 747,859 780,858 793,893 760,894 727,895 694,897 661,898 628,899 595,900 562,900 529,901 496,901 463,901 430,901 397,901 364,901 331,900 298,899 265,898 232,897 199,896 166,894 133,893"/>
+            <String CONTENT="̄ veram fidem cupitis aggregare: sed non oportet nobis eos qui non recte ingredi" HEIGHT="35" WIDTH="674" HPOS="120" VPOS="858" ORIGINAL_CONTENT="ingredi moliuntur excipere, beato Paulo apostolo ut Nemini dantes ullam offensionem, ut non vituperetur"/>
+          </TextLine>
+          <TextLine ID="TL_0020">
+            <Coords POINTS="120,899 156,900 192,901 228,903 264,904 300,905 336,906 372,906 408,907 444,907 480,907 516,907 552,907 588,907 624,906 660,905 696,904 732,903 768,902 804,900 840,899 852,935 816,936 780,937 744,939 708,940 672,941 636,942 600,942 564,943 528,943 492,943 456,943 420,943 384,943 348,942 312,941 276,940 240,939 204,938 168,936 132,935"/>
+            <String CONTENT="moliuntur excipere, beato Paulo apostolo commonente: Nemini dantes ullam offensionem," HEIGHT="36" WIDTH="733" HPOS="120" VPOS="899" ORIGINAL_CONTENT="ministerium nostrum . Quantam autem paternarum constitutionum, si sic recipiantur"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>

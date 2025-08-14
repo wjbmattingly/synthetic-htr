@@ -1,0 +1,18 @@
+Page 3 Summary
+==============================
+
+Page number: 3
+Image size: 1200 x 1600 pixels
+Total text regions: 3
+Lines of text: 2
+Font: medieval.otf (if available)
+Style: carolingian
+
+Text content preview:
+  1: Dei Salvatoris nostri amore fervescere, & quae in
+  2: pervagatione rereprehensibilia sunt, vitare. Data V idus Sep...
+
+Text regions detected:
+  1: Dei Salvatoris nostri amore fervescere, & quae in
+  2: pervagatione rereprehensibilia sunt, vitare. Data ...
+  3: Septembris.

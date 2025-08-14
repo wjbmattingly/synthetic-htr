@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v4#">
+  <Layout>
+    <Page ID="PAGE_0001" PHYSICAL_IMG_NR="1" HEIGHT="1600" WIDTH="1200">
+      <PrintSpace ID="PS_0001">
+        <TextBlock ID="TB_0001">
+          <TextLine ID="TL_0001">
+            <Coords POINTS="120,120 155,121 190,122 225,124 260,125 295,126 330,127 365,127 400,128 435,128 470,128 505,128 540,128 575,128 610,127 645,126 680,125 715,124 750,122 785,121 820,120 824,155 789,156 754,157 719,159 684,160 649,161 614,162 579,162 544,163 509,163 474,163 439,163 404,163 369,163 334,162 299,161 264,160 229,159 194,157 159,156 124,155"/>
+            <String CONTENT="communione nostra vir religiosus Achilles p ̄ vestra jussione debeat gratulari. At" HEIGHT="35" WIDTH="705" HPOS="120" VPOS="120" ORIGINAL_CONTENT="canonum regulis, quas servari praecipitis, sequenda praevenisset; defensanti, Quod autem clementia vestra"/>
+          </TextLine>
+          <TextLine ID="TL_0002">
+            <Coords POINTS="120,161 153,162 186,163 219,164 252,166 285,167 318,168 351,168 384,169 417,169 450,169 483,169 516,169 549,169 582,168 615,167 648,166 681,165 714,164 747,163 780,161 798,196 765,197 732,198 699,199 666,201 633,202 600,203 567,203 534,204 501,204 468,204 435,204 402,204 369,204 336,203 303,202 270,201 237,200 204,199 171,198 138,196"/>
+            <String CONTENT="vere de sacerdotio perfruendo, c ̄ ad nos universa quae legati nostri cognoverint" HEIGHT="35" WIDTH="679" HPOS="120" VPOS="161" ORIGINAL_CONTENT="fratris indesinenter coepiscopi nostri Epiphanii praevenisset; est excusare personam, simul in poterit, Achillis"/>
+          </TextLine>
+          <TextLine ID="TL_0003">
+            <Coords POINTS="120,202 157,203 194,204 231,206 268,207 305,208 342,209 379,209 416,210 453,210 490,210 527,210 564,210 601,210 638,209 675,208 712,207 749,206 786,204 823,203 860,202 864,237 827,238 790,239 753,241 716,242 679,243 642,244 605,244 568,245 531,245 494,245 457,245 420,245 383,245 346,244 309,243 272,242 235,241 198,239 161,238 124,237"/>
+            <String CONTENT="plenissima eorum fuerint relatione perlata, consideratis s ̄ orum canonum regulis, quas" HEIGHT="35" WIDTH="745" HPOS="120" VPOS="202" ORIGINAL_CONTENT="consecratione vestra potius jussio quam illius ordinatio praevenisset; credimus quod et ipse"/>
+          </TextLine>
+          <TextLine ID="TL_0004">
+            <Coords POINTS="120,243 158,244 196,245 234,247 272,248 310,249 348,250 386,250 424,251 462,251 500,251 538,251 576,251 614,251 652,250 690,249 728,248 766,247 804,245 842,244 880,243 884,285 846,286 808,287 770,289 732,290 694,291 656,292 618,292 580,293 542,293 504,293 466,293 428,293 390,293 352,292 314,291 276,290 238,289 200,287 162,286 124,285"/>
+            <String CONTENT="servari praecipitis, sequenda firmius censebuntur. Quod autem clementia vestra fratris" HEIGHT="42" WIDTH="765" HPOS="120" VPOS="243" ORIGINAL_CONTENT="cognoverit jure culpatum, qui praeter alia quae deliquit, defensanti, certe"/>
+          </TextLine>
+          <TextLine ID="TL_0005">
+            <Coords POINTS="120,284 157,285 194,286 231,288 268,289 305,290 342,291 379,292 416,292 453,292 490,292 527,292 564,292 601,292 638,291 675,290 712,289 749,288 786,286 823,285 860,284 862,319 825,320 788,321 751,323 714,324 677,325 640,326 603,327 566,327 529,327 492,327 455,327 418,327 381,327 344,326 307,325 270,324 233,323 196,321 159,320 122,319"/>
+            <String CONTENT="&amp; coepiscopi nostri Epiphanii dignata est excusare personam, quia in praedicti Achillis" HEIGHT="35" WIDTH="743" HPOS="120" VPOS="284" ORIGINAL_CONTENT="Octobris vix poterit, quod tam piissimo de clementissimo principi, et quoque Petri"/>
+          </TextLine>
+          <TextLine ID="TL_0006">
+            <Coords POINTS="120,325 158,326 196,327 234,329 272,330 310,331 348,332 386,332 424,333 462,333 500,333 538,333 576,333 614,333 652,332 690,331 728,330 766,329 804,328 842,326 880,325 887,358 849,359 811,360 773,362 735,363 697,364 659,365 621,365 583,366 545,366 507,366 469,366 431,366 393,366 355,365 317,364 279,363 241,362 203,361 165,359 127,358"/>
+            <String CONTENT="consecratione vestra potius jussio quam illius ordinatio praevenisset; credimus quod &amp; ipse" HEIGHT="33" WIDTH="768" HPOS="120" VPOS="325" ORIGINAL_CONTENT="privilegia defensanti, non vel opportune vel importune suggesserit quid gloriosi Octobris parte"/>
+          </TextLine>
+          <TextLine ID="TL_0007">
+            <Coords POINTS="120,366 157,367 194,368 231,370 268,371 305,372 342,373 379,374 416,374 453,374 490,374 527,374 564,374 601,374 638,373 675,372 712,371 749,370 786,368 823,367 860,366 861,401 824,402 787,403 750,405 713,406 676,407 639,408 602,409 565,409 528,409 491,409 454,409 417,409 380,409 343,408 306,407 269,406 232,405 195,403 158,402 121,401"/>
+            <String CONTENT="cognoverit jure culpatum, qui praeter alia quae deliquit, hoc certe excusare vix poterit," HEIGHT="35" WIDTH="742" HPOS="120" VPOS="366" ORIGINAL_CONTENT="sedis apostolicae reverentiae deberetur. De quo simul negotio, sed et de Justiniana civitate,"/>
+          </TextLine>
+          <TextLine ID="TL_0008">
+            <Coords POINTS="120,407 157,408 194,409 231,411 268,412 305,413 342,414 379,414 416,415 453,415 490,415 527,415 564,415 601,415 638,414 675,413 712,412 749,411 786,409 823,408 860,407 866,442 829,443 792,444 755,446 718,447 681,448 644,449 607,449 570,450 533,450 496,450 459,450 422,450 385,450 348,449 311,448 274,447 237,446 200,444 163,443 126,442"/>
+            <String CONTENT="quod tam piissimo &amp; clementissimo principi, beati quoque Petri privilegia defensanti, non" HEIGHT="35" WIDTH="747" HPOS="120" VPOS="407" ORIGINAL_CONTENT="gloriosi natalis vestri Octobris nec non semper nostrae imperii vicibus injungendis, Petro"/>
+          </TextLine>
+          <TextLine ID="TL_0009">
+            <Coords POINTS="120,448 156,449 192,450 228,451 264,453 300,454 336,455 372,455 408,456 444,456 480,456 516,456 552,456 588,456 624,455 660,454 696,453 732,452 768,451 804,450 840,448 857,482 821,483 785,484 749,485 713,487 677,488 641,489 605,489 569,490 533,490 497,490 461,490 425,490 389,490 353,489 317,488 281,487 245,486 209,485 173,484 137,482"/>
+            <String CONTENT="vel opportune vel importune suggesserit quid in hac parte sedis apostolicae reverentiae" HEIGHT="34" WIDTH="738" HPOS="120" VPOS="448" ORIGINAL_CONTENT="Petri beati Petri quem diligitis principatu, et vestrae pietatis de plenius deliberari"/>
+          </TextLine>
+          <TextLine ID="TL_0010">
+            <Coords POINTS="120,489 155,490 190,491 225,493 260,494 295,495 330,496 365,497 400,497 435,497 470,497 505,497 540,497 575,497 610,496 645,495 680,494 715,493 750,491 785,490 820,489 822,524 787,525 752,526 717,528 682,529 647,530 612,531 577,532 542,532 507,532 472,532 437,532 402,532 367,532 332,531 297,530 262,529 227,528 192,526 157,525 122,524"/>
+            <String CONTENT="deberetur. De quo simul negotio, sed &amp; de Justiniana civitate, gloriosi natalis vestri" HEIGHT="35" WIDTH="703" HPOS="120" VPOS="489" ORIGINAL_CONTENT="contigerit, per eos quos ad vos Octobris indesinenter celeriter intimamus. Superest ut, sicut"/>
+          </TextLine>
+          <TextLine ID="TL_0011">
+            <Coords POINTS="120,530 157,531 194,532 231,534 268,535 305,536 342,537 379,537 416,538 453,538 490,538 527,538 564,538 601,538 638,537 675,536 712,535 749,534 786,533 823,532 860,530 877,565 840,566 803,567 766,569 729,570 692,571 655,572 618,572 581,573 544,573 507,573 470,573 433,573 396,573 359,572 322,571 285,570 248,569 211,568 174,567 137,565"/>
+            <String CONTENT="conscia, nec non de nostrae sedis vicibus injungendis, quid, servato beati Petri quem diligitis" HEIGHT="35" WIDTH="758" HPOS="120" VPOS="530" ORIGINAL_CONTENT="a beato Petro indesinenter exposcimus, de salute et prosperitate vestri semper imperii gratulemur. Datum"/>
+          </TextLine>
+          <TextLine ID="TL_0012">
+            <Coords POINTS="120,571 157,572 194,573 231,575 268,576 305,577 342,578 379,578 416,579 453,579 490,579 527,579 564,579 601,579 638,578 675,577 712,576 749,575 786,573 823,572 860,571 866,606 829,607 792,608 755,610 718,611 681,612 644,613 607,613 570,614 533,614 496,614 459,614 422,614 385,614 348,613 311,612 274,611 237,610 200,608 163,607 126,606"/>
+            <String CONTENT="principatu, &amp; vestrae pietatis affectu, plenius deliberari contigerit, p ̄ eos quos ad vos" HEIGHT="35" WIDTH="747" HPOS="120" VPOS="571" ORIGINAL_CONTENT="idibus Octobris . pietatis affectu, plenius deliberari contigerit, sequenda praevenisset; eos quos est vos"/>
+          </TextLine>
+          <TextLine ID="TL_0013">
+            <Coords POINTS="120,612 155,613 190,614 225,616 260,617 295,618 330,619 365,620 400,620 435,620 470,621 505,620 540,620 575,620 610,619 645,618 680,617 715,616 750,614 785,613 820,612 820,647 785,648 750,649 715,651 680,652 645,653 610,654 575,655 540,655 505,655 470,656 435,655 400,655 365,655 330,654 295,653 260,652 225,651 190,649 155,648 120,647"/>
+            <String CONTENT="dirigimus legatos celeriter intimamus. Superest ut, sicut a beato Petro indesinenter" HEIGHT="35" WIDTH="701" HPOS="120" VPOS="612"/>
+          </TextLine>
+          <TextLine ID="TL_0014">
+            <Coords POINTS="120,653 156,654 192,655 228,656 264,658 300,659 336,660 372,660 408,661 444,661 480,661 516,661 552,661 588,661 624,660 660,659 696,658 732,657 768,656 804,655 840,653 857,689 821,690 785,691 749,692 713,694 677,695 641,696 605,696 569,697 533,697 497,697 461,697 425,697 389,697 353,696 317,695 281,694 245,693 209,692 173,691 137,689"/>
+            <String CONTENT="exposcimus, de salute &amp; prosperitate vestri semper imperii gratulemur. Datum idibus" HEIGHT="36" WIDTH="738" HPOS="120" VPOS="653" ORIGINAL_CONTENT="exposcimus, indesinenter salute Octobris prosperitate sicut semper imperii gratulemur. Datum idibus"/>
+          </TextLine>
+          <TextLine ID="TL_0015">
+            <Coords POINTS="120,694 124,695 128,696 132,697 136,699 140,700 144,701 148,701 152,702 156,702 160,702 164,702 168,702 172,702 176,701 180,700 184,699 188,698 192,697 196,696 200,695 203,729 199,730 195,731 191,732 187,734 183,735 179,736 175,736 171,737 167,737 163,737 159,737 155,737 151,737 147,736 143,735 139,734 135,733 131,732 127,731 123,730"/>
+            <String CONTENT="Octobris ." HEIGHT="35" WIDTH="84" HPOS="120" VPOS="694"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>

@@ -1,0 +1,29 @@
+Page 5 Summary
+==============================
+
+Page number: 5
+Image size: 1200 x 1600 pixels
+Total text regions: 22
+Lines of text: 21
+Font: medieval.otf (if available)
+Style: carolingian
+
+Text content preview:
+  1: jussione debeat gratulari. At vere de sacerdotio perfruendo,
+  2: c ̄ ad nos universa quae legati nostri
+  3: cognoverint plenissima eorum fuerint relatione perlata, cons...
+  4: canonum regulis, quas servari praecipitis, sequenda firmius ...
+  5: Quod autem clementia vestra fratris & coepiscopi nostri
+
+Text regions detected:
+  1: jussione debeat gratulari. At vere de sacerdotio
+  2: perfruendo, c ̄ ad nos universa quae legati nostri
+  3: cognoverint plenissima eorum fuerint relatione per...
+  4: consideratis sanctorum canonum regulis, quas serva...
+  5: praecipitis, sequenda firmius censebuntur. Quod au...
+  6: clementia vestra fratris & coepiscopi nostri Epiph...
+  7: dignata est excusare personam, quia in praedicti A...
+  8: consecratione vestra potius jussio quam illius ord...
+  9: praevenisset; credimus quod & ipse cognoverit jure
+  10: culpatum, qui praeter alia quae deliquit, hoc cert...
+  ... and 12 more regions

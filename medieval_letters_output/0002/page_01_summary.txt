@@ -1,0 +1,27 @@
+Page 1 Summary
+==============================
+
+Page number: 1
+Image size: 1200 x 1600 pixels
+Total text regions: 31
+Lines of text: 28
+Font: medieval.otf (if available)
+Style: carolingian
+
+Text content preview:
+  1: EPISTOLA II. AD EPISCOPOS AFRICANOS. Gratulatur quod ab haer...
+  3: Agapetus episcopus Reparato, Florentiniano, Datiano, & caete...
+  4: p ̄ Africam constitutis.
+
+Text regions detected:
+  1: EPISTOLA II. AD EPISCOPOS AFRICANOS.
+  2: Gratulatur quod ab haereticorum manibus evaserint
+  3: incolumes, & ad ea de quibus Joannem consuluerant
+  4: respondet. Agapetus episcopus Reparato, Florentini...
+  5: Datiano, & caeteris episcopis p ̄ Africam constitu...
+  6: Jamdudum quidem, fratres amantissimi, de prosperit...
+  7: vestris repletum est gaudio os nostrum, & lingua n...
+  8: exsultatione . Sed & nunc c ̄ litteras charitatis ...
+  9: praedecessorem nostrum datas accepimus; pridem gau...
+  10: concepta renovamus, benedicentes Dominum
+  ... and 21 more regions

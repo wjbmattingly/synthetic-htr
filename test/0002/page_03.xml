@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v4#">
+  <Layout>
+    <Page ID="PAGE_0001" PHYSICAL_IMG_NR="1" HEIGHT="1600" WIDTH="1200">
+      <PrintSpace ID="PS_0001">
+        <TextBlock ID="TB_0001">
+          <TextLine ID="TL_0001">
+            <Coords POINTS="120,120 157,121 194,122 231,124 268,125 305,126 342,127 379,127 416,128 453,128 490,128 527,128 564,128 601,128 638,127 675,126 712,125 749,124 786,123 823,121 860,120 869,155 832,156 795,157 758,159 721,160 684,161 647,162 610,162 573,163 536,163 499,163 462,163 425,163 388,163 351,162 314,161 277,160 240,159 203,158 166,156 129,155"/>
+            <String CONTENT="Dei Salvatoris nostri amore fervescere, &amp; quae in pervagatione rereprehensibilia sunt," HEIGHT="35" WIDTH="750" HPOS="120" VPOS="120" ORIGINAL_CONTENT="rereprehensibilia sunt, vitare. Data V idus Septembris. in pervagatione rereprehensibilia sunt,"/>
+          </TextLine>
+          <TextLine ID="TL_0002">
+            <Coords POINTS="120,161 133,162 146,163 159,164 172,166 185,167 198,167 211,168 224,169 237,169 250,169 263,169 276,169 289,169 302,168 315,168 328,167 341,166 354,165 367,164 380,162 393,161 397,196 384,197 371,198 358,199 345,201 332,202 319,202 306,203 293,204 280,204 267,204 254,204 241,204 228,204 215,203 202,203 189,202 176,201 163,200 150,199 137,197 124,196"/>
+            <String CONTENT="vitare. Data V idus Septembris." HEIGHT="35" WIDTH="278" HPOS="120" VPOS="161"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>
