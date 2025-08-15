@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v4#">
+  <Description>
+    <MeasurementUnit>pixel</MeasurementUnit>
+  </Description>
+  <Layout>
+    <Page WIDTH="1200" HEIGHT="1600" PHYSICAL_IMG_NR="1" ID="page_1">
+      <PrintSpace HPOS="0" VPOS="0" WIDTH="1200" HEIGHT="1600">
+        <TextBlock ID="block_1" HPOS="120" VPOS="120" WIDTH="577" HEIGHT="160">
+          <TextLine ID="line_1" HPOS="120" VPOS="120" WIDTH="497" HEIGHT="32">
+            <String ID="string_1" HPOS="120" VPOS="120" WIDTH="497" HEIGHT="32" CONTENT="EPISTOLA PRIMA AGAPETI PAPAE I AD" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_2" HPOS="128" VPOS="152" WIDTH="569" HEIGHT="32">
+            <String ID="string_2" HPOS="128" VPOS="152" WIDTH="569" HEIGHT="32" CONTENT="JUSTINIANUM. Justiniani fidei libellum, quatenus conformis" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_3" HPOS="132" VPOS="184" WIDTH="469" HEIGHT="32">
+            <String ID="string_3" HPOS="132" VPOS="184" WIDTH="469" HEIGHT="32" CONTENT="est sacris canonibus, confirmat. Agapetus episcopus" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_4" HPOS="128" VPOS="216" WIDTH="534" HEIGHT="32">
+            <String ID="string_4" HPOS="128" VPOS="216" WIDTH="534" HEIGHT="32" CONTENT="Justiniano Augusto. Gratulamur, venerabilis imperator, quod" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_5" HPOS="120" VPOS="248" WIDTH="165" HEIGHT="32">
+            <String ID="string_5" HPOS="120" VPOS="248" WIDTH="165" HEIGHT="32" CONTENT="tanto catholicae" WC="1.0"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>

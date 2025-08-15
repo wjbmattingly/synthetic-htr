@@ -48,7 +48,7 @@ except ImportError:
 class MedievalLetterProcessor:
     """Process medieval letters from the dataset into synthetic manuscripts."""
     
-    def __init__(self, style: str = "carolingian", lines_per_page: int = 30, words_per_line: int = 8, skip_existing: bool = True):
+    def __init__(self, style: str = "carolingian", lines_per_page: int = 30, words_per_line: int = 8, skip_existing: bool = True, use_advanced_typography: bool = True, enable_historical: bool = True):
         """
         Initialize the processor.
         
@@ -56,15 +56,23 @@ class MedievalLetterProcessor:
             style: Medieval script style (carolingian, gothic, uncial)
             lines_per_page: Number of lines per manuscript page
             words_per_line: Number of words per line for text splitting
+            skip_existing: Whether to skip already processed letters
+            use_advanced_typography: Whether to use advanced typography features
         """
         self.style = style
         self.lines_per_page = lines_per_page
         self.words_per_line = words_per_line
         self.skip_existing = skip_existing
+        self.use_advanced_typography = use_advanced_typography
+        self.enable_historical = enable_historical
         
-        # Initialize components
-        self.augmentor = TextAugmentor(medieval_style=style)
-        self.analyzer = OCRAnalyzer()
+        # Initialize components with advanced typography support
+        self.augmentor = TextAugmentor(
+            medieval_style=style,
+            use_advanced_typography=use_advanced_typography,
+            variation_strength=0.6  # Moderate variation for authentic look
+        )
+        self.analyzer = OCRAnalyzer(use_advanced_typography=use_advanced_typography)
         self.visualizer = ManuscriptVisualizer()
         
         # Cache for dataset to avoid repeated loading
@@ -186,26 +194,35 @@ class MedievalLetterProcessor:
         for block_type, text in blocks:
             print(f"Augmenting {block_type} text...")
             
-            # Apply augmentation based on block type
+            # Simplified augmentation - let Cerne font handle ligatures naturally
             if block_type == "header":
-                # Less aggressive augmentation for headers
+                # Minimal augmentation for headers - just basic cleanup
                 augmented = self.augmentor.augment_text(
                     text,
-                    add_ligatures=False,
+                    add_ligatures=False,  # Let Cerne handle ligatures
                     add_abbreviations=False,
-                    add_complex_abbreviations=False,  # Keep headers more readable
+                    add_complex_abbreviations=False,  # Keep headers readable
                     preserve_case=True,  # Keep headers uppercase
-                    context=context
+                    context=context,
+                    use_contextual_alternates=False,  # Let Cerne handle this
+                    use_letterform_variations=False,  # Keep headers consistent
+                    writing_speed="careful",
+                    formality="formal"
                 )
             else:
-                # Full augmentation for salutation and main text
+                # Minimal augmentation for main text - let Cerne do the work
                 augmented = self.augmentor.augment_text(
                     text,
-                    add_ligatures=False,
-                    add_abbreviations=False,
-                    add_complex_abbreviations=True,
+                    add_ligatures=False,  # Let Cerne handle ligatures naturally
+                    add_abbreviations=False,  # Avoid complex characters
+                    add_complex_abbreviations=False,  # Avoid complex characters
                     preserve_case=True,  # Keep original case
-                    context=context
+                    context=context,
+                    use_contextual_alternates=False,  # Let Cerne handle this
+                    use_letterform_variations=False,  # Let Cerne handle variations
+                    writing_speed="normal",
+                    formality="formal",
+                    fatigue_level="fresh"
                 )
             
             augmented_blocks.append((block_type, augmented))
@@ -347,7 +364,7 @@ class MedievalLetterProcessor:
         selected_texture = self._select_random_texture()
         print(f"Using texture: {selected_texture}")
         
-        # Generate OCR data with enhanced parameters for natural look
+        # Generate OCR data with enhanced parameters and advanced typography
         image, polygons, alto_xml = self.analyzer.generate_synthetic_ocr_data(
             text=page_text,
             width=1200,
@@ -357,14 +374,25 @@ class MedievalLetterProcessor:
             marginalia=False,  # No marginalia as requested
             curve_amount=0.25,  # Increased curvature for more realism
             heading_lines=1 if page_num == 1 else 0,  # First page has heading
-            font_path=medieval_font_path,
+            font_path=medieval_font_path,  # Fallback font path
             margin_size=120,  # More natural margins (was using default)
             word_spacing_factor=0.7,  # Closer word spacing
             texture_name=selected_texture,  # Random texture application
-            ink_opacity_range=(1, 2),  # Random faint ink opacity
+            ink_opacity_range=(0.8, 1.0),  # Better opacity range
             ink_color_variation=True,  # Use brownish-black ink colors
             add_noise=True,  # Add minimal realistic noise
-            original_text=original_page_text  # Original text for XML
+            original_text=original_page_text,  # Original text for XML
+            # Simplified typography parameters - let Cerne font do the work
+            medieval_font="cerne",  # Always try to use Cerne font
+            color_scheme="cerne",
+            use_color_layers=False,  # Disable complex color layers for now
+            use_letterform_variations=False,  # Let Cerne handle variations
+            writing_speed="normal",
+            formality="formal",
+            fatigue_level="fresh",
+            illumination_level="simple",
+            words_per_line=self.words_per_line,
+            enable_historical_features=self.enable_historical
         )
         
         return image, polygons, alto_xml
@@ -788,6 +816,20 @@ def main():
                        help="Force reprocessing of all letters, even if already done")
     parser.add_argument("--output-dir", default="/Users/wjm55/data/medieval-letters-synthetic",
                        help="Output directory for generated manuscripts")
+    parser.add_argument("--disable-advanced-typography", action="store_true", default=False,
+                       help="Disable advanced typography features (use basic rendering)")
+    parser.add_argument("--variation-strength", type=float, default=0.6,
+                       help="Strength of letterform variations (0.0-1.0)")
+    parser.add_argument("--color-scheme", default="cerne",
+                       choices=["cerne", "kells", "lindisfarne", "winchester"],
+                       help="Color scheme for manuscript rendering")
+    parser.add_argument("--medieval-font", default="cerne",
+                       choices=["cerne", "junicode", "medieval", "vitor"],
+                       help="Medieval font to use for rendering")
+    parser.add_argument("--enable-historical", action="store_true", default=True,
+                        help="Enable historical OpenType features (default: True)")
+    parser.add_argument("--disable-historical", action="store_true", default=False,
+                        help="Disable historical OpenType features")
     
     args = parser.parse_args()
     
@@ -811,13 +853,27 @@ def main():
     print()
     
     try:
-        # Initialize processor
+        # Initialize processor with advanced typography settings
+        use_advanced = not args.disable_advanced_typography
+        enable_historical = not args.disable_historical
         processor = MedievalLetterProcessor(
             style=args.style,
             lines_per_page=args.lines_per_page,
             words_per_line=args.words_per_line,
-            skip_existing=not args.force_reprocess
+            skip_existing=not args.force_reprocess,
+            use_advanced_typography=use_advanced,
+            enable_historical=enable_historical
         )
+        
+        # Set advanced typography parameters
+        if use_advanced:
+            processor.augmentor.set_variation_strength(args.variation_strength)
+            print(f"✨ Advanced typography enabled:")
+            print(f"   Font: {args.medieval_font}")
+            print(f"   Color scheme: {args.color_scheme}")
+            print(f"   Variation strength: {args.variation_strength}")
+        else:
+            print("📝 Using basic typography rendering")
         
         if args.all:
             # Process all letters with multi-threading

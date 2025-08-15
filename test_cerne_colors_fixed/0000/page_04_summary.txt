@@ -1,0 +1,24 @@
+Page 4 Summary
+==============================
+
+Page number: 4
+Original image size: 1200 x 1600 pixels
+Saved image size: 750 x 1000 pixels
+Total text regions: 5
+Lines of text: 5
+Font: medieval.otf (if available)
+Style: carolingian
+
+Text content preview:
+  1: cantabo: Repletum est gaudio os nostrum,
+  2: & lingua nostra exsultatione , quod
+  3: florentissimum principatum vestrum divinis quotidie inspicim...
+  4: beneficiis adornari. Cupis enim, venerabilis imperator,
+  5: ut tuae pietatis epistolam de fidei
+
+Text regions detected:
+  1: cantabo: Repletum est gaudio os nostrum,
+  2: & lingua nostra exsultatione , quod
+  3: florentissimum principatum vestrum divinis quotidi...
+  4: beneficiis adornari. Cupis enim, venerabilis imper...
+  5: ut tuae pietatis epistolam de fidei

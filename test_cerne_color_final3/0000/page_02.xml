@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v4#">
+  <Description>
+    <MeasurementUnit>pixel</MeasurementUnit>
+  </Description>
+  <Layout>
+    <Page WIDTH="1200" HEIGHT="1600" PHYSICAL_IMG_NR="1" ID="page_1">
+      <PrintSpace HPOS="0" VPOS="0" WIDTH="1200" HEIGHT="1600">
+        <TextBlock ID="block_1" HPOS="120" VPOS="120" WIDTH="834" HEIGHT="352">
+          <TextLine ID="line_1" HPOS="120" VPOS="120" WIDTH="834" HEIGHT="32">
+            <String ID="string_1" HPOS="120" VPOS="120" WIDTH="834" HEIGHT="32" CONTENT="subjicimus, ut qui nostris constitutionibus parere contempserit, ecclesiasticum statum puritatemque" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_2" HPOS="123" VPOS="152" WIDTH="547" HEIGHT="32">
+            <String ID="string_2" HPOS="123" VPOS="152" WIDTH="547" HEIGHT="32" CONTENT="non maculet. Textus autem epistolae hic est: In nomine Domini" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_3" HPOS="127" VPOS="184" WIDTH="618" HEIGHT="32">
+            <String ID="string_3" HPOS="127" VPOS="184" WIDTH="618" HEIGHT="32" CONTENT="nostri Jesu, etc., ut supra col. 35-36. Quamobrem petimus sanctitatem" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_4" HPOS="130" VPOS="216" WIDTH="665" HEIGHT="32">
+            <String ID="string_4" HPOS="130" VPOS="216" WIDTH="665" HEIGHT="32" CONTENT="vestram, ut memoratam epistolam vestra auctoritate firmetis, &amp; Cyrum vel" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_5" HPOS="131" VPOS="248" WIDTH="665" HEIGHT="32">
+            <String ID="string_5" HPOS="131" VPOS="248" WIDTH="665" HEIGHT="32" CONTENT="sequaces ejus a communione habeatis alienos, donec statutis sanctitatis vestrae" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_6" HPOS="132" VPOS="280" WIDTH="646" HEIGHT="32">
+            <String ID="string_6" HPOS="132" VPOS="280" WIDTH="646" HEIGHT="32" CONTENT="obtemperent. Exemplar subscriptionis. Divinitas te servet p ̄ multos annos," WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_7" HPOS="131" VPOS="312" WIDTH="528" HEIGHT="32">
+            <String ID="string_7" HPOS="131" VPOS="312" WIDTH="528" HEIGHT="32" CONTENT="sancte ac religiosissime p ̄ . Data pridie iduum Martiarum" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_8" HPOS="130" VPOS="344" WIDTH="675" HEIGHT="32">
+            <String ID="string_8" HPOS="130" VPOS="344" WIDTH="675" HEIGHT="32" CONTENT="Constantinopoli Flavio Belisario viro clarissimo consule. Is fuit annus Christi" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_9" HPOS="127" VPOS="376" WIDTH="535" HEIGHT="32">
+            <String ID="string_9" HPOS="127" VPOS="376" WIDTH="535" HEIGHT="32" CONTENT="535. Huic igitur, ut praedictum est, confessioni, &amp; huic fidei" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_10" HPOS="123" VPOS="408" WIDTH="743" HEIGHT="32">
+            <String ID="string_10" HPOS="123" VPOS="408" WIDTH="743" HEIGHT="32" CONTENT="quisquis contradicere praesumpserit, a catholica communione se noverit alienum. Datum" WC="1.0"/>
+          </TextLine>
+          <TextLine ID="line_11" HPOS="120" VPOS="440" WIDTH="699" HEIGHT="32">
+            <String ID="string_11" HPOS="120" VPOS="440" WIDTH="699" HEIGHT="32" CONTENT="XV calendas Aprilis, Constantinopoli Flavio Belisario viro clarissimo consule ." WC="1.0"/>
+          </TextLine>
+        </TextBlock>
+      </PrintSpace>
+    </Page>
+  </Layout>
+</alto>

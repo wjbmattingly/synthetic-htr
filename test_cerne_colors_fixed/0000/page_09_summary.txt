@@ -1,0 +1,24 @@
+Page 9 Summary
+==============================
+
+Page number: 9
+Original image size: 1200 x 1600 pixels
+Saved image size: 750 x 1000 pixels
+Total text regions: 5
+Lines of text: 5
+Font: medieval.otf (if available)
+Style: carolingian
+
+Text content preview:
+  1: communionis efficiatur extraneus. Unde & Cyrum,
+  2: ejusque sequaces, jam ante p ̄
+  3: hac insania ab Ecclesiae catholicae communione
+  4: suspensos, & in sua hactenus perfidia
+  5: permanentes, nisi sub satisfactione canonica doctrinam
+
+Text regions detected:
+  1: communionis efficiatur extraneus. Unde & Cyrum,
+  2: ejusque sequaces, jam ante p ̄
+  3: hac insania ab Ecclesiae catholicae communione
+  4: suspensos, & in sua hactenus perfidia
+  5: permanentes, nisi sub satisfactione canonica doctr...

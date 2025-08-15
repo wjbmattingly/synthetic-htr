@@ -73,9 +73,7 @@ class OCRAnalyzer:
         writing_speed: str = "normal",
         formality: str = "formal",
         fatigue_level: str = "fresh",
-        illumination_level: str = "simple",
-        words_per_line: int = 8,
-        enable_historical_features: bool = True
+        illumination_level: str = "simple"
     ) -> Tuple[Image.Image, List[Tuple[str, List[Tuple[int, int]]]], ET.Element]:
         """
         Generate synthetic OCR data with text polygons and ALTO XML.
@@ -144,19 +142,18 @@ class OCRAnalyzer:
         draw = ImageDraw.Draw(image)
         
         # Try to use Cerne color font rendering first
-        # Calculate words per line from the main function parameters
-        estimated_words_per_line = max(3, int((width - 2 * margin_size) / (font_size * 4)))  # Rough estimate
-        
-        cerne_result = self._render_manuscript_with_cerne_colors(
-            text, original_text, width, height, font_size, num_columns, 
-            marginalia, marginalia_probability, curve_amount, heading_lines, 
-            margin_size, word_spacing_factor, texture_name, words_per_line, 
-            enable_historical_features
+        cerne_color_image = self._render_with_cerne_colors(
+            text, font_size, width, height
         )
         
-        if cerne_result:
-            print("✅ Using Cerne color font rendering with proper layout")
-            return cerne_result
+        if cerne_color_image:
+            print("✅ Using Cerne color font rendering")
+            # Process the color image and return results
+            return self._process_cerne_color_image(
+                cerne_color_image, text, original_text, width, height,
+                background_texture, parchment_color, ink_color, 
+                add_noise, noise_strength, add_aging, aging_strength
+            )
         
         # Fallback to regular font rendering
         print("⚠️ Falling back to regular font rendering")
@@ -743,450 +740,30 @@ class OCRAnalyzer:
             # Convert SVG to PIL Image
             if os.path.exists(svg_path):
                 try:
-                    # Try rsvg-convert first (preserves colors better)
-                    try:
-                        # Create temporary PNG file
-                        with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_png:
-                            png_path = tmp_png.name
-                        
-                        # Use rsvg-convert to convert SVG to PNG
-                        convert_cmd = ['rsvg-convert', '-o', png_path, svg_path]
-                        convert_result = subprocess.run(convert_cmd, capture_output=True)
-                        
-                        if convert_result.returncode == 0:
-                            image = Image.open(png_path)
-                            os.unlink(png_path)  # Clean up temp PNG
-                        else:
-                            # Fallback: try cairosvg if rsvg-convert fails
-                            try:
-                                import cairosvg
-                                import io
-                                png_data = cairosvg.svg2png(url=svg_path)
-                                image = Image.open(io.BytesIO(png_data))
-                            except ImportError:
-                                # Final fallback: return None to use regular rendering
-                                os.unlink(svg_path)
-                                return None
-                    except Exception:
-                        # Handle rsvg-convert failure
-                        try:
-                            import cairosvg
-                            import io
-                            png_data = cairosvg.svg2png(url=svg_path)
-                            image = Image.open(io.BytesIO(png_data))
-                        except ImportError:
-                            os.unlink(svg_path)
-                            return None
-                        
-                    # Clean up
-                    os.unlink(svg_path)
-                    
-                    # Resize to target dimensions if needed
-                    if image.size != (width, height):
-                        # Calculate scaling to fit within target dimensions
-                        scale_x = width / image.width
-                        scale_y = height / image.height
-                        scale = min(scale_x, scale_y, 1.0)  # Don't upscale
-                        
-                        if scale < 1.0:
-                            new_width = int(image.width * scale)
-                            new_height = int(image.height * scale)
-                            image = image.resize((new_width, new_height), Image.Resampling.LANCZOS)
-                    
-                    return image
-                    
-                except Exception as e:
-                    if os.path.exists(svg_path):
-                        os.unlink(svg_path)
-                    return None
-            
-            return None
-            
-        except Exception as e:
-            return None
-    
-    def _process_cerne_color_image(self, cerne_image, text, original_text, width, height,
-                                   texture_name, parchment_color, ink_color,
-                                   add_noise, noise_strength, add_aging, aging_strength):
-        """
-        Process the Cerne color image and integrate it into a manuscript page.
-        
-        Args:
-            cerne_image: PIL Image with Cerne color rendering
-            text: The rendered text
-            original_text: Original text before augmentation
-            width, height: Target dimensions
-            texture_name: Background texture name
-            parchment_color: Parchment color tuple
-            ink_color: Ink color tuple (not used for color fonts)
-            add_noise: Whether to add noise
-            noise_strength: Noise strength
-            add_aging: Whether to add aging effects
-            aging_strength: Aging strength
-            
-        Returns:
-            Tuple of (image, polygons, alto_xml)
-        """
-        # Create manuscript background
-        background = Image.new('RGB', (width, height), parchment_color)
-        
-        # Apply texture if specified
-        if texture_name:
-            try:
-                from ..generator.texture_manager import TextureManager
-                texture_manager = TextureManager()
-                background = texture_manager.apply_texture(background, texture_name, opacity=0.3)
-            except ImportError:
-                print(f"Warning: Could not import TextureManager, using plain background")
-            except Exception as e:
-                print(f"Warning: Could not apply texture '{texture_name}': {e}")
-        
-        # Center the Cerne text on the background
-        if cerne_image.size[0] <= width and cerne_image.size[1] <= height:
-            x_offset = (width - cerne_image.width) // 2
-            y_offset = (height - cerne_image.height) // 2
-            
-            # Paste the color text onto the background
-            if cerne_image.mode == 'RGBA':
-                background.paste(cerne_image, (x_offset, y_offset), cerne_image)
-            else:
-                background.paste(cerne_image, (x_offset, y_offset))
-        else:
-            # If the text is larger than the background, just paste at (0,0)
-            if cerne_image.mode == 'RGBA':
-                background.paste(cerne_image, (0, 0), cerne_image)
-            else:
-                background.paste(cerne_image, (0, 0))
-        
-        # Apply aging and noise effects (simplified for color fonts)
-        # Note: Aging and noise effects are not implemented for color font rendering
-        # The Cerne font already provides authentic medieval appearance
-        
-        # Create simple bounding box for the text in the expected format
-        # This is a simplified version - in a full implementation you'd parse the SVG
-        text_bbox = [(50, 50), (width - 50, 50), (width - 50, height - 50), (50, height - 50)]  # Rectangle points
-        polygons = [(text, text_bbox)]  # Format: (text, polygon_points)
-        
-        # Generate simple ALTO XML
-        alto_xml = self._generate_simple_alto_xml(text, original_text, width, height, polygons)
-        
-        return background, polygons, alto_xml
-    
-    def _generate_simple_alto_xml(self, text, original_text, width, height, polygons):
-        """Generate a simple ALTO XML for color font rendering."""
-        from xml.etree.ElementTree import Element, SubElement, tostring
-        from xml.dom import minidom
-        
-        # Create ALTO structure
-        alto = Element('alto')
-        alto.set('xmlns', 'http://www.loc.gov/standards/alto/ns-v4#')
-        
-        description = SubElement(alto, 'Description')
-        measurement_unit = SubElement(description, 'MeasurementUnit')
-        measurement_unit.text = 'pixel'
-        
-        layout = SubElement(alto, 'Layout')
-        page = SubElement(layout, 'Page')
-        page.set('WIDTH', str(width))
-        page.set('HEIGHT', str(height))
-        page.set('PHYSICAL_IMG_NR', '1')
-        page.set('ID', 'page_1')
-        
-        print_space = SubElement(page, 'PrintSpace')
-        print_space.set('HPOS', '0')
-        print_space.set('VPOS', '0')
-        print_space.set('WIDTH', str(width))
-        print_space.set('HEIGHT', str(height))
-        
-        # Add text block
-        if polygons:
-            text_content, bbox_points = polygons[0]
-            # Convert polygon points to bounding box
-            x_coords = [p[0] for p in bbox_points]
-            y_coords = [p[1] for p in bbox_points]
-            min_x, max_x = min(x_coords), max(x_coords)
-            min_y, max_y = min(y_coords), max(y_coords)
-            
-            text_block = SubElement(print_space, 'TextBlock')
-            text_block.set('ID', 'block_1')
-            text_block.set('HPOS', str(int(min_x)))
-            text_block.set('VPOS', str(int(min_y)))
-            text_block.set('WIDTH', str(int(max_x - min_x)))
-            text_block.set('HEIGHT', str(int(max_y - min_y)))
-            
-            # Add text line
-            text_line = SubElement(text_block, 'TextLine')
-            text_line.set('ID', 'line_1')
-            text_line.set('HPOS', str(int(min_x)))
-            text_line.set('VPOS', str(int(min_y)))
-            text_line.set('WIDTH', str(int(max_x - min_x)))
-            text_line.set('HEIGHT', str(int(max_y - min_y)))
-            
-            # Add string
-            string_elem = SubElement(text_line, 'String')
-            string_elem.set('ID', 'string_1')
-            string_elem.set('HPOS', str(int(min_x)))
-            string_elem.set('VPOS', str(int(min_y)))
-            string_elem.set('WIDTH', str(int(max_x - min_x)))
-            string_elem.set('HEIGHT', str(int(max_y - min_y)))
-            string_elem.set('CONTENT', original_text or text)
-            string_elem.set('WC', '1.0')
-        
-        # Return the XML Element (not formatted string)
-        return alto
-    
-    def _render_manuscript_with_cerne_colors(self, text, original_text, width, height, 
-                                           font_size, num_columns, marginalia, 
-                                           marginalia_probability, curve_amount, 
-                                           heading_lines, margin_size, word_spacing_factor, 
-                                           texture_name, words_per_line=8, enable_historical=True):
-        """
-        Render a complete manuscript page with Cerne color fonts and proper layout.
-        
-        This method replicates the layout logic from the main function but uses
-        Cerne color font rendering for each line.
-        """
-        try:
-            import tempfile
-            import subprocess
-            
-            # Find Cerne font
-            cerne_paths = [
-                "/Users/wjm55/yale/Cerne-font/fonts/Cerne.otf",
-                "/Users/wjm55/yale/synthetic-htr/synthetic_htr/fonts/Cerne.otf",
-                "synthetic_htr/fonts/Cerne.otf"
-            ]
-            
-            cerne_font_path = None
-            for path in cerne_paths:
-                if os.path.exists(path):
-                    cerne_font_path = path
-                    break
-            
-            if not cerne_font_path:
-                return None
-            
-            # Create manuscript background
-            parchment_color = (240, 230, 210)
-            background = Image.new('RGB', (width, height), parchment_color)
-            
-            # Apply texture if specified
-            if texture_name:
-                try:
-                    from ..generator.texture_manager import TextureManager
-                    texture_manager = TextureManager()
-                    background = texture_manager.apply_texture(background, texture_name, opacity=0.3)
-                except ImportError:
-                    print(f"Warning: Could not import TextureManager, using plain background")
-                except Exception as e:
-                    print(f"Warning: Could not apply texture '{texture_name}': {e}")
-            
-            # Calculate layout parameters (similar to main function)
-            main_width = width - (2 * margin_size)
-            column_width = main_width // num_columns
-            
-            # Split text into words and create lines
-            words = text.split()
-            lines = []
-            current_line = []
-            
-            # Use the passed words_per_line parameter instead of estimating
-            # This respects the --words-per-line command line argument
-            
-
-            
-            for i, word in enumerate(words):
-                current_line.append(word)
-                if len(current_line) >= words_per_line or i == len(words) - 1:
-                    lines.append(' '.join(current_line))
-                    current_line = []
-            
-            # Render each line with Cerne colors
-            polygons = []
-            y_offset = margin_size
-            line_height = int(font_size * 0.9)  # Even tighter line spacing for more authentic medieval look
-            
-            for line_num, line_text in enumerate(lines):
-                if y_offset + line_height > height - margin_size:
-                    break  # Don't exceed page bounds
-                
-                # Render this line with Cerne colors
-                line_image = self._render_single_line_with_cerne(line_text, font_size, cerne_font_path, enable_historical)
-                
-                if line_image:
-                    # Calculate position for this line with curve support
-                    x_pos = margin_size
-                    y_pos = y_offset
-                    
-                    # Add curve effect if specified
-                    if curve_amount > 0:
-                        import math
-                        # Create a subtle curve across the page
-                        page_progress = line_num / max(1, len(lines) - 1)  # 0 to 1
-                        curve_offset = int(curve_amount * 50 * math.sin(page_progress * math.pi))
-                        x_pos += curve_offset
-                    
-                    # Paste the line onto the background
-                    if line_image.mode == 'RGBA':
-                        background.paste(line_image, (x_pos, y_pos), line_image)
-                    else:
-                        background.paste(line_image, (x_pos, y_pos))
-                    
-                    # Create polygon for this line
-                    line_width = min(line_image.width, main_width)
-                    line_bbox = [(x_pos, y_pos), (x_pos + line_width, y_pos), 
-                                (x_pos + line_width, y_pos + line_height), (x_pos, y_pos + line_height)]
-                    polygons.append((line_text, line_bbox))
-                
-                y_offset += line_height
-            
-            # Generate ALTO XML with proper line structure
-            alto_xml = self._generate_multiline_alto_xml(text, original_text, width, height, polygons)
-            
-            return background, polygons, alto_xml
-            
-        except Exception as e:
-            print(f"❌ Error in Cerne manuscript rendering: {e}")
-            return None
-    
-    def _render_single_line_with_cerne(self, line_text, font_size, cerne_font_path, enable_historical=True):
-        """Render a single line of text with Cerne color font."""
-        try:
-            import tempfile
-            import subprocess
-            
-            # Create temporary SVG file
-            with tempfile.NamedTemporaryFile(suffix='.svg', delete=False) as tmp_svg:
-                svg_path = tmp_svg.name
-            
-            # Adjust word spacing by adding thin spaces between words for tighter spacing
-            if ' ' in line_text:
-                # Replace regular spaces with thin spaces for tighter word spacing
-                line_text = line_text.replace(' ', ' ')  # U+2009 thin space
-            
-            # Use BlackRenderer to create SVG for this line
-            cmd = [
-                'blackrenderer',
-                cerne_font_path,
-                line_text,
-                svg_path,
-                '--font-size', str(font_size),
-                '--backend', 'svg'
-            ]
-            
-            # Add historical OpenType features if enabled
-            if enable_historical:
-                # Enable contextual alternates and discretionary ligatures
-                # Note: 'hist' and stylistic sets interfere with color layers, so we use selective features
-                features = 'calt,dlig'
-                cmd.extend(['--features', features])
-            
-            result = subprocess.run(cmd, capture_output=True, text=True)
-            
-            if result.returncode != 0:
-                return None
-            
-            # Convert SVG to PIL Image using rsvg-convert
-            if os.path.exists(svg_path):
-                try:
-                    # Create temporary PNG file
-                    with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_png:
-                        png_path = tmp_png.name
-                    
-                    # Use rsvg-convert to convert SVG to PNG
-                    convert_cmd = ['rsvg-convert', '-o', png_path, svg_path]
-                    convert_result = subprocess.run(convert_cmd, capture_output=True)
-                    
-                    if convert_result.returncode == 0:
-                        image = Image.open(png_path)
-                        os.unlink(png_path)  # Clean up temp PNG
-                        os.unlink(svg_path)  # Clean up temp SVG
-                        return image
-                    else:
-                        os.unlink(svg_path)
-                        return None
-                        
-                except Exception as e:
-                    if os.path.exists(svg_path):
-                        os.unlink(svg_path)
-                    return None
-            
-            return None
-            
-        except Exception as e:
-            return None
-    
-    def _generate_multiline_alto_xml(self, text, original_text, width, height, polygons):
-        """Generate ALTO XML with proper multi-line structure."""
-        from xml.etree.ElementTree import Element, SubElement
-        
-        # Create ALTO structure
-        alto = Element('alto')
-        alto.set('xmlns', 'http://www.loc.gov/standards/alto/ns-v4#')
-        
-        description = SubElement(alto, 'Description')
-        measurement_unit = SubElement(description, 'MeasurementUnit')
-        measurement_unit.text = 'pixel'
-        
-        layout = SubElement(alto, 'Layout')
-        page = SubElement(layout, 'Page')
-        page.set('WIDTH', str(width))
-        page.set('HEIGHT', str(height))
-        page.set('PHYSICAL_IMG_NR', '1')
-        page.set('ID', 'page_1')
-        
-        print_space = SubElement(page, 'PrintSpace')
-        print_space.set('HPOS', '0')
-        print_space.set('VPOS', '0')
-        print_space.set('WIDTH', str(width))
-        print_space.set('HEIGHT', str(height))
-        
-        # Add text block
-        if polygons:
-            text_block = SubElement(print_space, 'TextBlock')
-            text_block.set('ID', 'block_1')
-            
-            # Calculate overall block bounds
-            all_x = []
-            all_y = []
-            for _, bbox_points in polygons:
-                for point in bbox_points:
-                    all_x.append(point[0])
-                    all_y.append(point[1])
-            
-            block_x = min(all_x)
-            block_y = min(all_y)
-            block_width = max(all_x) - block_x
-            block_height = max(all_y) - block_y
-            
-            text_block.set('HPOS', str(int(block_x)))
-            text_block.set('VPOS', str(int(block_y)))
-            text_block.set('WIDTH', str(int(block_width)))
-            text_block.set('HEIGHT', str(int(block_height)))
-            
-            # Add each line as a separate TextLine
-            for line_num, (line_text, bbox_points) in enumerate(polygons):
-                # Convert polygon points to bounding box
-                x_coords = [p[0] for p in bbox_points]
-                y_coords = [p[1] for p in bbox_points]
-                min_x, max_x = min(x_coords), max(x_coords)
-                min_y, max_y = min(y_coords), max(y_coords)
-                
-                text_line = SubElement(text_block, 'TextLine')
-                text_line.set('ID', f'line_{line_num + 1}')
-                text_line.set('HPOS', str(int(min_x)))
-                text_line.set('VPOS', str(int(min_y)))
-                text_line.set('WIDTH', str(int(max_x - min_x)))
-                text_line.set('HEIGHT', str(int(max_y - min_y)))
-                
-                # Add string for this line
-                string_elem = SubElement(text_line, 'String')
-                string_elem.set('ID', f'string_{line_num + 1}')
-                string_elem.set('HPOS', str(int(min_x)))
-                string_elem.set('VPOS', str(int(min_y)))
-                string_elem.set('WIDTH', str(int(max_x - min_x)))
-                string_elem.set('HEIGHT', str(int(max_y - min_y)))
-                string_elem.set('CONTENT', line_text)
-                string_elem.set('WC', '1.0')
-        
-        return alto
+                     # Try rsvg-convert first (preserves colors better)
+                     try:
+                         import subprocess
+                         import tempfile
+                         
+                         # Create temporary PNG file
+                         with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_png:
+                             png_path = tmp_png.name
+                         
+                         # Use rsvg-convert to convert SVG to PNG
+                         convert_cmd = ['rsvg-convert', '-o', png_path, svg_path]
+                         convert_result = subprocess.run(convert_cmd, capture_output=True)
+                         
+                         if convert_result.returncode == 0:
+                             image = Image.open(png_path)
+                             os.unlink(png_path)  # Clean up temp PNG
+                         else:
+                             # Fallback: try cairosvg if rsvg-convert fails
+                             try:
+                                 import cairosvg
+                                 import io
+                                 png_data = cairosvg.svg2png(url=svg_path)
+                                 image = Image.open(io.BytesIO(png_data))
+                             except ImportError:
+                                 # Final fallback: return None to use regular rendering
+                                 os.unlink(svg_path)
+                                 return None
