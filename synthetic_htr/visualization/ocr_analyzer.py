@@ -990,11 +990,12 @@ class OCRAnalyzer:
             lines = []
             current_line = []
             
+            # Detect if this text starts with a header or should have a drop capital
+            # Look for patterns that indicate the start of a new section
+            should_have_drop_capital = self._should_have_drop_capital(text)
+            
             # Use the passed words_per_line parameter instead of estimating
             # This respects the --words-per-line command line argument
-            
-
-            
             for i, word in enumerate(words):
                 current_line.append(word)
                 if len(current_line) >= words_per_line or i == len(words) - 1:
@@ -1005,18 +1006,41 @@ class OCRAnalyzer:
             polygons = []
             y_offset = margin_size
             line_height = int(font_size * 0.9)  # Even tighter line spacing for more authentic medieval look
+            drop_capital_used = False
+            drop_capital_height = 0
+            drop_capital_width = 0
             
             for line_num, line_text in enumerate(lines):
                 if y_offset + line_height > height - margin_size:
                     break  # Don't exceed page bounds
                 
-                # Render this line with Cerne colors
-                line_image = self._render_single_line_with_cerne(line_text, font_size, cerne_font_path, enable_historical)
+                # Check if this is the first line and should have a drop capital
+                use_drop_capital = (line_num == 0 and should_have_drop_capital and 
+                                  line_text.strip() and not drop_capital_used)
+                
+                if use_drop_capital and len(line_text.strip()) > 0:
+                    # Render line with drop capital
+                    line_image, dc_width = self._render_line_with_drop_capital(
+                        line_text, font_size, cerne_font_path, enable_historical)
+                    drop_capital_used = True
+                    drop_capital_width = dc_width
+                    if line_image:
+                        drop_capital_height = line_image.height
+                else:
+                    # Render normal line
+                    line_image = self._render_single_line_with_cerne(line_text, font_size, cerne_font_path, enable_historical)
                 
                 if line_image:
                     # Calculate position for this line with curve support
                     x_pos = margin_size
                     y_pos = y_offset
+                    
+                    # For lines following a drop capital, check if they should wrap around it
+                    # In traditional medieval manuscripts, typically only the second line wraps slightly
+                    if drop_capital_used and line_num == 1:
+                        # Only indent the second line slightly to wrap around the drop capital
+                        wrap_indent = min(drop_capital_width // 3, 25)  # Much smaller indent, max 25px
+                        x_pos += wrap_indent
                     
                     # Add curve effect if specified
                     if curve_amount > 0:
@@ -1033,12 +1057,23 @@ class OCRAnalyzer:
                         background.paste(line_image, (x_pos, y_pos))
                     
                     # Create polygon for this line
-                    line_width = min(line_image.width, main_width)
-                    line_bbox = [(x_pos, y_pos), (x_pos + line_width, y_pos), 
-                                (x_pos + line_width, y_pos + line_height), (x_pos, y_pos + line_height)]
+                    # For drop capital lines, adjust the bounding box to account for the overlap
+                    if use_drop_capital:
+                        # The actual text width is reduced due to overlap
+                        actual_line_width = min(line_image.width, main_width - (x_pos - margin_size))
+                        line_bbox = [(x_pos, y_pos), (x_pos + actual_line_width, y_pos), 
+                                    (x_pos + actual_line_width, y_pos + line_height), (x_pos, y_pos + line_height)]
+                    else:
+                        line_width = min(line_image.width, main_width - (x_pos - margin_size))
+                        line_bbox = [(x_pos, y_pos), (x_pos + line_width, y_pos), 
+                                    (x_pos + line_width, y_pos + line_height), (x_pos, y_pos + line_height)]
                     polygons.append((line_text, line_bbox))
                 
-                y_offset += line_height
+                # Adjust line height if drop capital was used (drop capitals are taller)
+                if use_drop_capital:
+                    y_offset += int(line_height * 1.4)  # Even tighter spacing - 1.4x for closer second line
+                else:
+                    y_offset += line_height
             
             # Generate ALTO XML with proper line structure
             alto_xml = self._generate_multiline_alto_xml(text, original_text, width, height, polygons)
@@ -1049,6 +1084,200 @@ class OCRAnalyzer:
             print(f"❌ Error in Cerne manuscript rendering: {e}")
             return None
     
+    def _should_have_drop_capital(self, text):
+        """
+        Determine if this text should start with a drop capital.
+        
+        Drop capitals typically appear:
+        - After headers/titles
+        - At the beginning of new sections
+        - After blank lines indicating paragraph breaks
+        """
+        # Check if text starts after a blank line or header pattern
+        lines = text.split('\n')
+        if not lines:
+            return False
+            
+        # Look for patterns that suggest this is the start of a new section
+        first_line = lines[0].strip()
+        
+        # If there are blank lines at the start, the first non-empty line should have a drop capital
+        for line in lines:
+            if line.strip():
+                first_line = line.strip()
+                break
+        
+        # Heuristics for when to use drop capitals:
+        # 1. Text starts with common medieval salutations
+        salutation_patterns = [
+            'Domino', 'Reverendissimo', 'Venerabili', 'Carissimo', 'Dilecto',
+            'Sanctissimo', 'Beatissimo', 'Illustrissimo', 'Magnifico'
+        ]
+        
+        # 2. Text starts with common medieval opening phrases
+        opening_patterns = [
+            'In nomine', 'Anno Domini', 'Ego', 'Notum sit', 'Universis',
+            'Omnibus', 'Sciant', 'Cum', 'Quoniam', 'Quia'
+        ]
+        
+        # Check if first line starts with any of these patterns
+        for pattern in salutation_patterns + opening_patterns:
+            if first_line.startswith(pattern):
+                return True
+        
+        # 3. If text follows a clear paragraph break (multiple blank lines)
+        if len([line for line in lines[:3] if line.strip() == '']) >= 1:
+            return True
+            
+        # 4. Default: use drop capital for the first substantial paragraph
+        # (more than 20 characters suggests it's not just a header)
+        if len(first_line) > 20:
+            return True
+            
+        return False
+
+    def _render_drop_capital_with_cerne(self, first_letter, font_size, cerne_font_path, enable_historical=True):
+        """Render a drop capital (large initial letter) with Cerne color font."""
+        try:
+            import tempfile
+            import subprocess
+            
+            # Create temporary SVG file
+            with tempfile.NamedTemporaryFile(suffix='.svg', delete=False) as tmp_svg:
+                svg_path = tmp_svg.name
+            
+            # Use a much larger font size for drop capital (typically 3-4x normal size)
+            drop_capital_size = int(font_size * 3.5)
+            
+            # Use BlackRenderer to create SVG for the drop capital
+            cmd = [
+                'blackrenderer',
+                cerne_font_path,
+                first_letter,
+                svg_path,
+                '--font-size', str(drop_capital_size),
+                '--backend', 'svg'
+            ]
+            
+            # Add historical OpenType features if enabled
+            if enable_historical:
+                # Enable contextual alternates and discretionary ligatures
+                # Note: 'hist' and stylistic sets interfere with color layers, so we use selective features
+                features = 'calt,dlig'
+                cmd.extend(['--features', features])
+            
+            result = subprocess.run(cmd, capture_output=True, text=True)
+            
+            if result.returncode != 0:
+                return None
+            
+            # Convert SVG to PNG using rsvg-convert
+            with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_png:
+                png_path = tmp_png.name
+            
+            try:
+                # Use rsvg-convert for SVG to PNG conversion (preserves colors better)
+                convert_cmd = ['rsvg-convert', svg_path, '-o', png_path]
+                convert_result = subprocess.run(convert_cmd, capture_output=True, text=True)
+                
+                if convert_result.returncode != 0:
+                    print(f"Warning: rsvg-convert failed: {convert_result.stderr}")
+                    return None
+                
+                # Load the PNG image
+                from PIL import Image
+                drop_capital_image = Image.open(png_path)
+                
+                # Clean up temporary files
+                os.unlink(svg_path)
+                os.unlink(png_path)
+                
+                return drop_capital_image
+                
+            except Exception as e:
+                print(f"Warning: SVG to PNG conversion failed: {e}")
+                # Clean up temporary files
+                try:
+                    os.unlink(svg_path)
+                    os.unlink(png_path)
+                except:
+                    pass
+                return None
+                
+        except Exception as e:
+            print(f"Warning: Drop capital rendering failed: {e}")
+            return None
+
+    def _render_line_with_drop_capital(self, line_text, font_size, cerne_font_path, enable_historical=True):
+        """
+        Render a line of text with a drop capital at the beginning.
+        
+        Returns:
+            tuple: (combined_image, drop_capital_width) or (None, 0) if failed
+        """
+        try:
+            from PIL import Image
+            
+            if not line_text.strip():
+                return None, 0
+            
+            # Get the first letter for the drop capital
+            first_letter = line_text.strip()[0]
+            remaining_text = line_text.strip()[1:].lstrip()
+            
+            # Render the drop capital
+            drop_capital_image = self._render_drop_capital_with_cerne(
+                first_letter, font_size, cerne_font_path, enable_historical)
+            
+            if not drop_capital_image:
+                # Fallback to normal line rendering if drop capital fails
+                return self._render_single_line_with_cerne(line_text, font_size, cerne_font_path, enable_historical), 0
+            
+            # Render the remaining text
+            remaining_image = None
+            if remaining_text:
+                remaining_image = self._render_single_line_with_cerne(
+                    remaining_text, font_size, cerne_font_path, enable_historical)
+            
+            # Calculate dimensions for the combined image
+            drop_capital_width = drop_capital_image.width
+            drop_capital_height = drop_capital_image.height
+            
+            # The remaining text should be positioned to the right of the drop capital
+            # and vertically centered relative to the drop capital
+            if remaining_image:
+                # Move text much closer - double the overlap effect
+                total_width = drop_capital_width + remaining_image.width - 20  # Double overlap - 20px
+                total_height = max(drop_capital_height, remaining_image.height)
+            else:
+                total_width = drop_capital_width
+                total_height = drop_capital_height
+            
+            # Create combined image with transparent background
+            combined_image = Image.new('RGBA', (total_width, total_height), (0, 0, 0, 0))
+            
+            # Paste the drop capital at the left
+            combined_image.paste(drop_capital_image, (0, 0), drop_capital_image)
+            
+            # Paste the remaining text to the right, vertically centered
+            if remaining_image:
+                # Position remaining text vertically centered relative to drop capital
+                text_y_offset = max(0, (drop_capital_height - remaining_image.height) // 2)
+                text_x_offset = drop_capital_width - 50  # Double overlap - 20px for very tight spacing
+                
+                if remaining_image.mode == 'RGBA':
+                    combined_image.paste(remaining_image, (text_x_offset, text_y_offset), remaining_image)
+                else:
+                    combined_image.paste(remaining_image, (text_x_offset, text_y_offset))
+            
+            return combined_image, drop_capital_width
+            
+        except Exception as e:
+            print(f"Warning: Line with drop capital rendering failed: {e}")
+            # Fallback to normal line rendering
+            fallback_image = self._render_single_line_with_cerne(line_text, font_size, cerne_font_path, enable_historical)
+            return fallback_image, 0
+
     def _render_single_line_with_cerne(self, line_text, font_size, cerne_font_path, enable_historical=True):
         """Render a single line of text with Cerne color font."""
         try:
